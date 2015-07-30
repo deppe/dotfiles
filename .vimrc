@@ -1,4 +1,4 @@
- Start Vundle setup
+" Start Vundle setup
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -12,6 +12,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'scrooloose/syntastic'
 
 Bundle 'tomasr/molokai'
@@ -23,7 +24,9 @@ set shiftwidth=4
 " set cindent
 
 set ruler
+set cursorline
 set number
+set relativenumber
 
 set showcmd
 
@@ -38,6 +41,20 @@ set ignorecase
 
 "turn off hlsearch on enter
 nnoremap <CR> :noh<CR><CR>
+
+"Easier split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"enter to insert space below, shift-enter to insert space above
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
+" Open new splits below and to the right
+set splitbelow
+set splitright
 
 set guifont=Monospace\ 16
 set background=dark
@@ -78,6 +95,20 @@ let g:ctrlp_custom_ignore = {
 
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
+
+"Always search to center of the screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+"Firefox-like tab navigation
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
 
 " set grepprg=ack\ -k
 
