@@ -6,16 +6,22 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-sensible'
 Plugin 'kien/ctrlp.vim'
+" Plugin 'mhinz/vim-startify'
 Plugin 'mileszs/ack.vim'
+Plugin 'rhysd/clever-f.vim'
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tomasr/molokai'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'scrooloose/syntastic'
-
-Bundle 'tomasr/molokai'
+" Plugin 'myusuf3/numbers.vim'
 call vundle#end()            " required
 
 set expandtab
@@ -25,6 +31,7 @@ set shiftwidth=4
 
 set ruler
 set cursorline
+
 set number
 set relativenumber
 
