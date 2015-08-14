@@ -127,7 +127,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "turn off hlsearch on enter
-"nnoremap <CR> :noh<CR><CR>
+nnoremap <Esc> :noh<CR><Esc>
 """" End Key Remappings
 
 """" Ctrlp settings
