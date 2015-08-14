@@ -9,7 +9,7 @@ call vundle#begin()
 " Plugin 'Shougo/unite.vim'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'altercation/vim-colors-solarized'
-" Plugin 'mhinz/vim-startify'
+Plugin 'mhinz/vim-startify'
 " Plugin 'myusuf3/numbers.vim'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'vim-scripts/AfterColors.vim'
