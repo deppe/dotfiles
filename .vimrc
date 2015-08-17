@@ -100,6 +100,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
+nnoremap G Gzz
 
 "Firefox-like tab navigation
 nnoremap <C-S-tab> :tabprevious<CR>
