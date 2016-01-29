@@ -102,12 +102,6 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 nnoremap G Gzz
 
-"Firefox-like tab navigation
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-
 "Space inserts a space in normal mode
 nnoremap <Space> i<Space><Esc> 
 
@@ -124,12 +118,20 @@ vnoremap <S-Tab> <
 "Easier split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> :call MoveRight()<cr>
+nnoremap <C-H> :call MoveLeft()<cr>
 
 "turn off hlsearch on enter
 nnoremap <Esc> :noh<CR><Esc>
 """" End Key Remappings
+
+"""" ag grep 
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_caching = 0
+endif
+"""" end ag grep
 
 """" Ctrlp settings
 let g:ctrlp_custom_ignore = {
@@ -137,3 +139,22 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(so|o|d|dd|swp|zip|gzip|pyc)$',
   \ }
 """" End Ctrlp settings
+
+""" Nav functions
+" These will move to left/right split if exists. Otherwise, left/right tab
+function! MoveLeft()
+    let curNr = winnr()
+    wincmd h
+    if winnr() == curNr
+        tabp
+    endif
+endfunction
+
+function! MoveRight()
+    let curNr = winnr()
+    wincmd l
+    if winnr() == curNr
+        tabn
+    endif
+endfunction
+""" End Nav functions
