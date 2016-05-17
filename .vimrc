@@ -136,9 +136,14 @@ inoremap <C-v> <C-r>"
 "Exit insert mode with jk
 inoremap jk <Esc>l
 
-"turn off hlsearch on enter
-nnoremap <Esc> :noh<CR><Esc>
-"""" End Key Remappings
+" map leader-h to add a #include for the current file's header
+nnoremap <Leader>h cc#include <<C-R>=expand("%:t")<CR>><Esc>T.ct>h<Esc>
+nnoremap <Leader>v :tabnew $MYVIMRC<CR>
+nnoremap <Leader>e :NERDTree<CR>
+
+" for wrapped lines, make up/down behave more sanely
+nnoremap j gj
+nnoremap k gk
 
 "A nicer way to replace a word. 'S' is a pretty pointless command (but maybe
 "less dumb than 's'), so this is a good sub-in.
