@@ -13,14 +13,15 @@ Plugin 'mhinz/vim-startify'
 " Plugin 'myusuf3/numbers.vim'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'vim-scripts/AfterColors.vim'
+Plugin 'vim-scripts/a.vim'
 Plugin 'bling/vim-airline'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
-"Plugin 'godlygeek/csapprox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-fugitive'
@@ -49,15 +50,12 @@ set hlsearch
 set incsearch
 set ignorecase
 
-" Turn off cursor blink
-set guicursor+=a:blinkon0
 
 " Open new splits below and to the right
+
 set splitbelow
 set splitright
 
-set guifont=Monospace\ 13
-set background=dark
 
 set tabpagemax=100
 set mouse=a
@@ -80,6 +78,9 @@ filetype plugin indent on
 " Use cpp syntax for .gob files
 au BufNewFile,BufRead *.gob set filetype=cpp
 
+" If cursor is idle, check for new version of file
+"au CursorHold * checktime
+
 " Automatically source any time a vimrc-like file is saved
 augroup myvimrc
     au!
@@ -87,11 +88,34 @@ augroup myvimrc
 augroup END
 
 " Change cursor to red after loading a color scheme
-au ColorScheme * highlight Cursor guibg=red guifg=black
+"au ColorScheme * highlight Cursor guibg=red guifg=black
 """" End Autocommands
 
-" Set colors
 colorscheme molokai
+
+if has("gui_running")
+    " Turn off cursor blink
+    set guicursor+=a:blinkon0
+    set guifont=Monospace\ 13
+    set background=dark
+else
+    silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_blink_mode off"
+    "Hack for cursor in gnome-terminal
+    "These change gnome-terminal settings globally
+    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+
+    "Turn off character background color
+    hi Normal ctermbg=None
+
+    hi Visual ctermbg=124 ctermfg=White
+    "hi CursorLine ctermbg=darkgrey ctermfg=white
+
+    "Make cursor red. This will affect terminal globally
+    "silent !echo -ne "\033]12;red\007"
+endif
 
 """" Key Remappings
 "Always search to center of the screen
@@ -135,6 +159,11 @@ inoremap <C-v> <C-r>"
 
 "Exit insert mode with jk
 inoremap jk <Esc>l
+inoremap <Esc> <Esc>l
+
+"gf to open new tab always
+nnoremap gf <C-W>gf
+vnoremap gf <C-W>gf
 
 " map leader-h to add a #include for the current file's header
 nnoremap <Leader>h cc#include <<C-R>=expand("%:t")<CR>><Esc>T.ct>h<Esc>
@@ -165,6 +194,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(so|o|d|dd|swp|zip|gzip|pyc)$',
   \ }
+
+"don't change working path when opening new files
+let g:ctrlp_working_path_mode = 0
 """" End Ctrlp settings
 
 """ Nav functions
