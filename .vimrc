@@ -14,7 +14,7 @@ Plugin 'mhinz/vim-startify'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'vim-scripts/AfterColors.vim'
 Plugin 'vim-scripts/a.vim'
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
@@ -28,6 +28,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-abolish'
+Plugin 'vim-scripts/IndexedSearch'
 call vundle#end()            " required
 
 """" General settings
@@ -99,20 +101,20 @@ if has("gui_running")
     set guifont=Monospace\ 13
     set background=dark
 else
-    silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_blink_mode off"
-    "Hack for cursor in gnome-terminal
-    "These change gnome-terminal settings globally
-    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-
-    "Turn off character background color
-    hi Normal ctermbg=None
-
-    hi Visual ctermbg=124 ctermfg=White
-    "hi CursorLine ctermbg=darkgrey ctermfg=white
-
+"    silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_blink_mode off"
+"    "Hack for cursor in gnome-terminal
+"    "These change gnome-terminal settings globally
+"    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"    au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"
+"    "Turn off character background color
+"    hi Normal ctermbg=None
+"
+"    hi Visual ctermbg=124 ctermfg=White
+"    "hi CursorLine ctermbg=darkgrey ctermfg=white
+"
     "Make cursor red. This will affect terminal globally
     "silent !echo -ne "\033]12;red\007"
 endif
@@ -185,7 +187,7 @@ vnoremap S "_dP
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_user_caching = 0
+    let g:ctrlp_use_caching = 1
 endif
 """" end ag grep
 
