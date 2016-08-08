@@ -155,6 +155,9 @@ nnoremap <C-K> :call MoveUp()<cr>
 nnoremap <C-L> :call MoveRight()<cr>
 nnoremap <C-H> :call MoveLeft()<cr>
 
+"Make Y act like C and D
+nnoremap Y y$
+
 "Make ctrl-c, ctrl-v work for copy paste
 vnoremap <C-c> "+ygv"*ygv
 inoremap <C-v> <C-r>"
