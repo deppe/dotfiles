@@ -174,6 +174,8 @@ vnoremap gf <C-W>gf
 nnoremap <Leader>h cc#include <<C-R>=expand("%:t")<CR>><Esc>T.ct>h<Esc>
 nnoremap <Leader>v :tabnew $MYVIMRC<CR>
 nnoremap <Leader>e :NERDTree<CR>
+nnoremap <Leader>p :set paste<CR>"*p:set nopaste<CR>
+nnoremap <Leader>P :set paste<CR>"*P:set nopaste<CR>
 
 " for wrapped lines, make up/down behave more sanely
 nnoremap j gj
