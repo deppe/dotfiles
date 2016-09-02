@@ -176,6 +176,7 @@ nnoremap <Leader>v :tabnew $MYVIMRC<CR>
 nnoremap <Leader>e :NERDTree<CR>
 nnoremap <Leader>p :set paste<CR>"*p:set nopaste<CR>
 nnoremap <Leader>P :set paste<CR>"*P:set nopaste<CR>
+nnoremap <Leader>m :call ToggleCopyMode()<CR>
 
 " for wrapped lines, make up/down behave more sanely
 nnoremap j gj
@@ -242,4 +243,17 @@ function! MoveDown()
         normal 10j
     endif
 endfunction
+
+function! ToggleCopyMode()
+    if &mouse == 'a'
+        set mouse=
+        set nonumber
+        set norelativenumber
+    else
+        set mouse=a
+        set number
+        set relativenumber
+    endif
+endfunc
+
 """ End Nav functions
