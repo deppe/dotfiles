@@ -3,6 +3,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Set the runtime path to include Vundle and initialize
+" To install vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" To update plugins :PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
