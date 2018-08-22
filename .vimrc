@@ -69,6 +69,7 @@ set mouse=a
 set t_kb=
 
 " Move all swp files to ~/.vim
+silent !mkdir -p ~/.vim/backup ~/.vim/swp
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 
