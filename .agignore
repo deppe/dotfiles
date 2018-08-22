@@ -1,0 +1,12 @@
+*.o
+*.so
+*.d
+*.dd
+*.swp
+*.zip
+*.gzip
+*.pyc
+*.linux_64.*
+.svn/
+.git/
+.hg/
