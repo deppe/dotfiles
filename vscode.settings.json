@@ -1,0 +1,54 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.detectIndentation": false,
+    //Needed for bbvpn
+    //"http.proxy": "http://proxy.bloomberg.com:80",
+    //"http.proxyStrictSSL": false
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>", "l"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<Enter>"],
+            "after": ["o", "<Esc>"]
+        },
+        {
+            "before": ["n"],
+            "after": ["n", "z", "z"]
+        },
+        {
+            "before": ["N"],
+            "after": ["N", "z", "z"]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        }
+    ],
+    "vim.hlsearch": true,
+    "vim.searchHighlightColor": "rgba(150, 0, 0, 0.5)",
+
+    "editor.fontSize": 14,
+
+    "workbench.fontAliasing": "auto",
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#ff0000"
+    },
+    "http.proxyStrictSSL": false,
+    "http.proxy": "https://proxy.bloomberg.com:81",
+    "workbench.colorTheme": "Monokai",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.lineNumbers": "relative",
+    "window.zoomLevel": 0,
+    "editor.wordWrap": "on",
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "editor.minimap.enabled": false
+}

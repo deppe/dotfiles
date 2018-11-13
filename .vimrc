@@ -3,6 +3,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Set the runtime path to include Vundle and initialize
+" To install vundle git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" To update plugins :PluginInstall
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
@@ -20,6 +22,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'pangloss/vim-javascript'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
@@ -67,6 +70,7 @@ set mouse=a
 set t_kb=
 
 " Move all swp files to ~/.vim
+silent !mkdir -p ~/.vim/backup ~/.vim/swp
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 
