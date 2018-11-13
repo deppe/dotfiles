@@ -19,16 +19,19 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'nvie/vim-flake8'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-scripts/IndexedSearch'
 call vundle#end()            " required
 
@@ -52,9 +55,7 @@ set hlsearch
 set incsearch
 set ignorecase
 
-
 " Open new splits below and to the right
-
 set splitbelow
 set splitright
 
@@ -94,6 +95,13 @@ augroup END
 """" End Autocommands
 
 colorscheme molokai
+
+" For iterm2, send escape sequences to change cursor to | on insert
+" let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+" let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+" ?
+set ttyfast
 
 if has("gui_running")
     " Turn off cursor blink
@@ -137,7 +145,7 @@ nnoremap % %zz
 "nnoremap }{ }{zz
 
 "Space inserts a space in normal mode
-nnoremap <Space> i<Space><Esc> 
+"nnoremap <Space> i<Space><Esc> 
 
 "enter to insert space below, shift-enter to insert space above
 nnoremap <S-Enter> O<Esc>
@@ -171,12 +179,19 @@ nnoremap gf <C-W>gf
 vnoremap gf <C-W>gf
 
 " map leader-h to add a #include for the current file's header
-nnoremap <Leader>h cc#include <<C-R>=expand("%:t")<CR>><Esc>T.ct>h<Esc>
+let mapleader = "\<Space>"
+noremap <leader>l $
+noremap <leader>h ^
+nnoremap <Leader>C :CtrlPClearCache<CR>
+nnoremap <Leader>H cc#include <<C-R>=expand("%:t")<CR>><Esc>T.ct>h<Esc>
 nnoremap <Leader>v :tabnew $MYVIMRC<CR>
 nnoremap <Leader>e :NERDTree<CR>
 nnoremap <Leader>p :set paste<CR>"*p:set nopaste<CR>
 nnoremap <Leader>P :set paste<CR>"*P:set nopaste<CR>
 nnoremap <Leader>m :call ToggleCopyMode()<CR>
+nnoremap <leader>2 :mksession! ~/vim_session <CR> " Quick write session
+nnoremap <leader>3 :source ~/vim_session <CR>     " Load session
+
 
 " for wrapped lines, make up/down behave more sanely
 nnoremap j gj
@@ -198,14 +213,27 @@ endif
 """" end ag grep
 
 """" Ctrlp settings
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(so|o|d|dd|swp|zip|gzip|pyc)$',
-  \ }
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\.git$\|\.svn$\|\myenv$',
+"  \ 'file': '\.so$|\.o$|\.d$|\.dd$|\.swp$|\.zip$|\.gzip$|\.pyc$',
+"  \ }
 
 "don't change working path when opening new files
 let g:ctrlp_working_path_mode = 0
 """" End Ctrlp settings
+
+""" Startify settings
+" Startup is slow when recent files are on remote file systems. 
+" See https://github.com/mhinz/vim-startify/issues/149.
+let g:startify_enable_unsafe = 1
+""" End Startify settings
+
+""" Flake8 settings
+"autocmd BufWritePost *.py call Flake8()
+let g:flake8_show_in_gutter = 1 
+let g:flake8_show_in_file = 1 
+let g:flake8_show_quickfix = 1
+""" End Flake8 settings
 
 """ Nav functions
 "Move to left split or left tab
